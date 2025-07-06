@@ -1,15 +1,13 @@
 ---
-date: '2019-11-12'
-title: 'Building a Headless Mobile App CMS From Scratch'
+date: '2019-04-01'
+title: 'Headless CMS with Gatsby'
 github: ''
-external: 'https://medium.com/stories-from-upstatement/building-a-headless-mobile-app-cms-from-scratch-bab2d17744d9'
+external: 'https://medium.com/@bchiang7/headless-cms-with-gatsby-js-8b3b3b3b3b3b'
 tech:
-  - Node
-  - Express
-  - Firebase
-  - Vue
-company: 'Upstatement'
-showInProjects: true
+  - Gatsby
+  - Contentful
+  - GraphQL
+showInProjects: false
 ---
 
-Find out how we built a custom headless CMS with Node, Express, and Firebase for a project at Upstatement
+A tutorial on how to build a headless CMS with Gatsby and Contentful.

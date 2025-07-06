@@ -250,13 +250,13 @@ const StyledProject = styled.li`
     @media (max-width: 768px) {
       grid-column: 1 / -1;
       height: 100%;
-      opacity: 0.25;
+      opacity: 0.85;
     }
 
     a {
       width: 100%;
       height: 100%;
-      background-color: var(--green);
+      background-color: var(--light-navy);
       border-radius: var(--border-radius);
       vertical-align: middle;
 
@@ -265,10 +265,14 @@ const StyledProject = styled.li`
         background: transparent;
         outline: 0;
 
-        &:before,
-        .img {
+        &:before {
           background: transparent;
+        }
+
+        .img {
           filter: none;
+          mix-blend-mode: normal;
+          opacity: 1;
         }
       }
 
@@ -284,20 +288,24 @@ const StyledProject = styled.li`
         z-index: 3;
         transition: var(--transition);
         background-color: var(--navy);
-        mix-blend-mode: screen;
+        mix-blend-mode: multiply;
+        opacity: 0.3;
       }
     }
 
     .img {
       border-radius: var(--border-radius);
       mix-blend-mode: multiply;
-      filter: grayscale(100%) contrast(1) brightness(90%);
+      filter: grayscale(50%) contrast(1.1) brightness(0.95);
+      opacity: 0.9;
+      transition: var(--transition);
 
       @media (max-width: 768px) {
         object-fit: cover;
         width: auto;
         height: 100%;
-        filter: grayscale(100%) contrast(1) brightness(50%);
+        filter: grayscale(50%) contrast(1.1) brightness(0.95);
+        opacity: 0.9;
       }
     }
   }
@@ -322,7 +330,6 @@ const Featured = () => {
               tech
               github
               external
-              cta
             }
             html
           }
@@ -348,14 +355,14 @@ const Featured = () => {
   return (
     <section id="projects">
       <h2 className="numbered-heading" ref={revealTitle}>
-        Some Things I’ve Built
+        Some Things I've Built
       </h2>
 
       <StyledProjectsGrid>
         {featuredProjects &&
           featuredProjects.map(({ node }, i) => {
             const { frontmatter, html } = node;
-            const { external, title, tech, github, cover, cta } = frontmatter;
+            const { external, title, tech, github, cover } = frontmatter;
             const image = getImage(cover);
 
             return (
@@ -382,17 +389,12 @@ const Featured = () => {
                     )}
 
                     <div className="project-links">
-                      {cta && (
-                        <a href={cta} aria-label="Course Link" className="cta">
-                          Learn More
-                        </a>
-                      )}
                       {github && (
                         <a href={github} aria-label="GitHub Link">
                           <Icon name="GitHub" />
                         </a>
                       )}
-                      {external && !cta && (
+                      {external && (
                         <a href={external} aria-label="External Link" className="external">
                           <Icon name="External" />
                         </a>

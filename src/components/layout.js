@@ -11,7 +11,7 @@ const StyledContent = styled.div`
 `;
 
 const Layout = ({ children, location }) => {
-  const isHome = location.pathname === '/';
+  const isHome = location?.pathname === '/';
   const [isLoading, setIsLoading] = useState(isHome);
 
   // Sets target="_blank" rel="noopener noreferrer" on external links
@@ -32,7 +32,7 @@ const Layout = ({ children, location }) => {
       return;
     }
 
-    if (location.hash) {
+    if (location?.hash) {
       const id = location.hash.substring(1); // location.hash without the '#'
       setTimeout(() => {
         const el = document.getElementById(id);

@@ -1,15 +1,16 @@
 ---
-date: '2017-12-27'
-title: 'Halcyon Theme'
-github: 'https://github.com/bchiang7/halcyon-site'
-external: 'https://halcyon-theme.netlify.com/'
+date: '2025-03-01'
+title: 'Online Bookstore'
+github: 'https://github.com/SanicaVinayakMyana/online-bookstore'
+external: 'https://github.com/sanicavinayakmyana'
 tech:
-  - VS Code
-  - Sublime Text
-  - Atom
-  - iTerm2
-  - Hyper
+  - Java
+  - Spring Boot
+  - MySQL
+company: 'Coding Granth'
 showInProjects: false
 ---
 
-A minimal, dark blue theme for VS Code, Sublime Text, Atom, iTerm, and more. Available on [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=brittanychiang.halcyon-vscode), [Package Control](https://packagecontrol.io/packages/Halcyon%20Theme), [Atom Package Manager](https://atom.io/themes/halcyon-syntax), and [npm](https://www.npmjs.com/package/hyper-halcyon-theme).
+A web application for browsing and purchasing books online.
+Features user authentication, book search, shopping cart, and order management.
+Built as part of my internship at Coding Granth.

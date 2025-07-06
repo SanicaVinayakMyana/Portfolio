@@ -18,6 +18,7 @@ const StyledAboutSection = styled.section`
     }
   }
 `;
+
 const StyledText = styled.div`
   ul.skills-list {
     display: grid;
@@ -31,7 +32,7 @@ const StyledText = styled.div`
     li {
       position: relative;
       margin-bottom: 10px;
-      padding-left: 20px;
+      padding-left: 28px;
       font-family: var(--font-mono);
       font-size: var(--fz-xs);
 
@@ -46,6 +47,7 @@ const StyledText = styled.div`
     }
   }
 `;
+
 const StyledPic = styled.div`
   position: relative;
   max-width: 300px;
@@ -125,7 +127,17 @@ const About = () => {
     sr.reveal(revealContainer.current, srConfig());
   }, []);
 
-  const skills = ['JavaScript (ES6+)', 'TypeScript', 'React', 'Eleventy', 'Node.js', 'WordPress'];
+  const skills = [
+    'Java',
+    'Spring Boot',
+    'MySQL',
+    'MongoDB',
+    'HTML & CSS',
+    'Git & GitHub',
+    'REST APIs',
+    'Object-Oriented Programming',
+    'Data Structures & Algorithms',
+  ];
 
   return (
     <StyledAboutSection id="about" ref={revealContainer}>
@@ -135,33 +147,23 @@ const About = () => {
         <StyledText>
           <div>
             <p>
-              Hello! My name is Brittany and I enjoy creating things that live on the internet. My
-              interest in web development started back in 2012 when I decided to try editing custom
-              Tumblr themes — turns out hacking together a custom reblog button taught me a lot
-              about HTML &amp; CSS!
+              Hello! My name is Sanica, and I specialize in backend development using Java and Spring Boot.
+              My interest in software development began with learning core Java, Data Structures, and Object-Oriented Programming. 
+              Since then, I've been focused on building efficient and maintainable systems.
             </p>
 
             <p>
-              Fast-forward to today, and I’ve had the privilege of working at{' '}
-              <a href="https://us.mullenlowe.com/">an advertising agency</a>,{' '}
-              <a href="https://starry.com/">a start-up</a>,{' '}
-              <a href="https://www.apple.com/">a huge corporation</a>, and{' '}
-              <a href="https://scout.camd.northeastern.edu/">a student-led design studio</a>. My
-              main focus these days is building accessible, inclusive products and digital
-              experiences at <a href="https://upstatement.com/">Upstatement</a> for a variety of
-              clients.
+              I am currently working as a Java Intern at Coding Granth, where I contribute to backend development tasks 
+              and strengthen my understanding of real-world software practices. I'm also developing a Blockchain-based 
+              Patient Record Management System, which combines secure data handling with decentralized architecture.
             </p>
 
             <p>
-              I also recently{' '}
-              <a href="https://www.newline.co/courses/build-a-spotify-connected-app">
-                launched a course
-              </a>{' '}
-              that covers everything you need to build a web app with the Spotify API using Node
-              &amp; React.
+              In college, I have worked on projects such as a Blockchain-based Voting Web Application and an Online Bookstore 
+              using Spring Boot, which allowed me to apply theoretical knowledge to practical development scenarios.
             </p>
 
-            <p>Here are a few technologies I’ve been working with recently:</p>
+            <p>Technologies I've been working with recently:</p>
           </div>
 
           <ul className="skills-list">
@@ -173,11 +175,13 @@ const About = () => {
           <div className="wrapper">
             <StaticImage
               className="img"
-              src="../../images/me.jpg"
-              width={500}
+              src="../../images/photo_Sanica.jpeg"
+              width={300}
+              height={300}
               quality={95}
               formats={['AUTO', 'WEBP', 'AVIF']}
               alt="Headshot"
+              placeholder="blurred"
             />
           </div>
         </StyledPic>

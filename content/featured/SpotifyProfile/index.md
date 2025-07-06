@@ -1,15 +1,18 @@
 ---
-date: '2'
-title: 'Spotify Profile'
-cover: './demo.png'
-github: 'https://github.com/bchiang7/spotify-profile'
-external: 'https://spotify-profile.herokuapp.com/'
+date: '2025-04-01'
+title: 'Blockchain based Patient Record Management System'
+github: 'https://github.com/SanicaVinayakMyana'
+external: 'https://github.com/sanicavinayakmyana'
 tech:
-  - React
-  - Styled Components
-  - Express
-  - Spotify API
-  - Heroku
+  - Blockchain
+  - Java
+  - Spring Boot
+  - MySQL
+company: 'Sanica Vinayak Myana'
+showInProjects: true
+cover: './blockchain-patient-record.png'
 ---
 
-A web app for visualizing personalized Spotify data. View your top artists, top tracks, recently played tracks, and detailed audio information about each track. Create and save new playlists of recommended tracks based on your existing playlists and more.
+A secure and decentralized web application for managing patient medical records using blockchain technology.
+Features include immutable record storage, patient privacy, and access control for healthcare providers.
+Built as a personal project by Sanica Vinayak Myana.

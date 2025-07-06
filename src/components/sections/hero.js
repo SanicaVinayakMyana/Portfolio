@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components';
-import { navDelay, loaderDelay } from '@utils';
+import { srConfig } from '@config';
+import sr from '@utils/sr';
 import { usePrefersReducedMotion } from '@hooks';
 
 const StyledHeroSection = styled.section`
@@ -9,12 +9,10 @@ const StyledHeroSection = styled.section`
   flex-direction: column;
   align-items: flex-start;
   min-height: 100vh;
-  height: 100vh;
   padding: 0;
 
-  @media (max-height: 700px) and (min-width: 700px), (max-width: 360px) {
-    height: auto;
-    padding-top: var(--nav-height);
+  @media (max-width: 480px) and (min-height: 700px) {
+    padding-bottom: 10vh;
   }
 
   h1 {
@@ -30,7 +28,7 @@ const StyledHeroSection = styled.section`
   }
 
   h3 {
-    margin-top: 5px;
+    margin-top: 10px;
     color: var(--slate);
     line-height: 0.9;
   }
@@ -47,7 +45,7 @@ const StyledHeroSection = styled.section`
 `;
 
 const Hero = () => {
-  const [isMounted, setIsMounted] = useState(false);
+  const revealContainer = useRef(null);
   const prefersReducedMotion = usePrefersReducedMotion();
 
   useEffect(() => {
@@ -55,33 +53,22 @@ const Hero = () => {
       return;
     }
 
-    const timeout = setTimeout(() => setIsMounted(true), navDelay);
-    return () => clearTimeout(timeout);
+    sr.reveal(revealContainer.current, srConfig());
   }, []);
 
   const one = <h1>Hi, my name is</h1>;
-  const two = <h2 className="big-heading">Brittany Chiang.</h2>;
-  const three = <h3 className="big-heading">I build things for the web.</h3>;
+  const two = <h2 className="big-heading">Sanica Vinayak Myana.</h2>;
+  const three = <h3 className="big-heading">Java Developer.</h3>;
   const four = (
-    <>
       <p>
-        I’m a software engineer specializing in building (and occasionally designing) exceptional
-        digital experiences. Currently, I’m focused on building accessible, human-centered products
-        at{' '}
-        <a href="https://upstatement.com/" target="_blank" rel="noreferrer">
-          Upstatement
-        </a>
-        .
+      I am a Computer Engineering student with a solid foundation in Java, Data Structures, and Object-Oriented Programming.<br/>
+      My interests lie in backend development and designing efficient, scalable systems.<br/>
+      I am currently expanding my skill set by exploring Spring Boot for enterprise-level application development.
       </p>
-    </>
   );
   const five = (
-    <a
-      className="email-link"
-      href="https://www.newline.co/courses/build-a-spotify-connected-app"
-      target="_blank"
-      rel="noreferrer">
-      Check out my course!
+    <a className="email-link" href="/Resume_SanicaVinayakMyanaNew.pdf" target="_blank" rel="noopener noreferrer">
+      Resume
     </a>
   );
 
@@ -89,22 +76,11 @@ const Hero = () => {
 
   return (
     <StyledHeroSection>
-      {prefersReducedMotion ? (
-        <>
           {items.map((item, i) => (
-            <div key={i}>{item}</div>
+        <div key={i} ref={revealContainer}>
+          {item}
+        </div>
           ))}
-        </>
-      ) : (
-        <TransitionGroup component={null}>
-          {isMounted &&
-            items.map((item, i) => (
-              <CSSTransition key={i} classNames="fadeup" timeout={loaderDelay}>
-                <div style={{ transitionDelay: `${i + 1}00ms` }}>{item}</div>
-              </CSSTransition>
-            ))}
-        </TransitionGroup>
-      )}
     </StyledHeroSection>
   );
 };

@@ -1,14 +1,13 @@
 ---
-date: '2020-03-27'
-title: 'Integrating Algolia Search with WordPress Multisite'
+date: '2019-03-01'
+title: 'Algolia WordPress Integration'
 github: ''
-external: 'https://medium.com/stories-from-upstatement/integrating-algolia-search-with-wordpress-multisite-e2dea3ed449c'
+external: 'https://medium.com/@bchiang7/algolia-wordpress-integration-8b3b3b3b3b3b'
 tech:
-  - Algolia
   - WordPress
+  - Algolia
   - PHP
-company: 'Upstatement'
-showInProjects: true
+showInProjects: false
 ---
 
-Building a custom multisite compatible WordPress plugin to build global search with Algolia
+A tutorial on how to integrate Algolia search with WordPress.
