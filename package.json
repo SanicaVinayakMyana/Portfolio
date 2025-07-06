@@ -12,6 +12,9 @@
   "keywords": [
     "gatsby"
   ],
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "browserslist": "> 0.25%, not dead",
   "scripts": {
     "build": "gatsby build",
