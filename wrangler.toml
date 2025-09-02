@@ -3,7 +3,7 @@ command = "npm install --legacy-peer-deps && npm run build"
 publish = "public"
 
 [build.environment]
-NODE_VERSION = "18" 
+NODE_VERSION = "20.18.1" 
 
 # Cloudflare Pages configuration
 pages_build_output_dir = "public"
