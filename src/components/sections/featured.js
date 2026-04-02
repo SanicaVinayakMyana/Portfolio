@@ -44,6 +44,13 @@ const StyledProject = styled.li`
       grid-column: 7 / -1;
       text-align: right;
 
+      .project-title,
+      .project-overline {
+        @media (min-width: 768px) {
+          margin-left: calc(100% / 6);
+        }
+      }
+
       @media (max-width: 1080px) {
         grid-column: 5 / -1;
       }
