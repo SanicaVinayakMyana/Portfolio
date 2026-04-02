@@ -4,9 +4,9 @@ module.exports = {
   siteMetadata: {
     title: 'Sanica Vinayak Myana',
     description: 'Java Developer',
-    siteUrl: 'https://sanicamyana.com', // No trailing slash allowed!
+    siteUrl: 'https://brittanychiang.com', // No trailing slash allowed!
     image: '/og.png', // Path to your image you placed in the 'static' folder
-    twitterUsername: '',
+    twitterUsername: '@bchiang7',
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -24,8 +24,8 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: 'Sanica Vinayak Myana',
-        short_name: 'Sanica Myana',
+        name: 'Brittany Chiang',
+        short_name: 'Brittany Chiang',
         start_url: '/',
         background_color: config.colors.darkNavy,
         theme_color: config.colors.navy,
