@@ -56,31 +56,35 @@ const Hero = () => {
     sr.reveal(revealContainer.current, srConfig());
   }, []);
 
-  const one = <h1>Hi, my name is</h1>;
   const two = <h2 className="big-heading">Sanica Vinayak Myana.</h2>;
   const three = <h3 className="big-heading">Java Developer.</h3>;
   const four = (
-      <p>
-      I am a Computer Engineering student with a solid foundation in Java, Data Structures, and Object-Oriented Programming.<br/>
-      My interests lie in backend development and designing efficient, scalable systems.<br/>
-      I am currently expanding my skill set by exploring Spring Boot for enterprise-level application development.
-      </p>
+    <p>
+      Final year Computer Engineering student at MMCOE, Pune, with a strong foundation in Java, Data
+      Structures, and Object-Oriented Programming.
+      <br />I specialise in backend development and building secure, scalable systems using Spring
+      Boot, Blockchain, and cybersecurity research.
+    </p>
   );
   const five = (
-    <a className="email-link" href="/Resume_SanicaVinayakMyanaNew.pdf" target="_blank" rel="noopener noreferrer">
+    <a
+      className="email-link"
+      href="/Resume_SanicaVinayakMyana.pdf"
+      target="_blank"
+      rel="noopener noreferrer">
       Resume
     </a>
   );
 
-  const items = [one, two, three, four, five];
+  const items = [two, three, four, five];
 
   return (
     <StyledHeroSection>
-          {items.map((item, i) => (
+      {items.map((item, i) => (
         <div key={i} ref={revealContainer}>
           {item}
         </div>
-          ))}
+      ))}
     </StyledHeroSection>
   );
 };

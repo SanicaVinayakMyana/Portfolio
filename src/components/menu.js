@@ -267,7 +267,7 @@ const Menu = () => {
             )}
 
             <a
-              href="/Resume_SanicaVinayakMyanaNew.pdf"
+              href="/Resume_SanicaVinayakMyana.pdf"
               className="resume-link"
               target="_blank"
               rel="noopener noreferrer">

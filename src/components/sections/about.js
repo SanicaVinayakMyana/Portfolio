@@ -127,18 +127,6 @@ const About = () => {
     sr.reveal(revealContainer.current, srConfig());
   }, []);
 
-  const skills = [
-    'Java',
-    'Spring Boot',
-    'MySQL',
-    'MongoDB',
-    'HTML & CSS',
-    'Git & GitHub',
-    'REST APIs',
-    'Object-Oriented Programming',
-    'Data Structures & Algorithms',
-  ];
-
   return (
     <StyledAboutSection id="about" ref={revealContainer}>
       <h2 className="numbered-heading">About Me</h2>
@@ -147,41 +135,46 @@ const About = () => {
         <StyledText>
           <div>
             <p>
-              Hello! My name is Sanica, and I specialize in backend development using Java and Spring Boot.
-              My interest in software development began with learning core Java, Data Structures, and Object-Oriented Programming. 
-              Since then, I've been focused on building efficient and maintainable systems.
+              Hi, I'm Sanica - a backend developer with a strong foundation in Java, Spring Boot,
+              Data Structures, and Object-Oriented Programming. My interest in software development
+              began with core Java and grew into a passion for building efficient, secure, and
+              scalable systems.
             </p>
 
             <p>
-              I am currently working as a Java Intern at Coding Granth, where I contribute to backend development tasks 
-              and strengthen my understanding of real-world software practices. I'm also developing a Blockchain-based 
-              Patient Record Management System, which combines secure data handling with decentralized architecture.
+              I've worked as a Java Intern at Coding Granth, contributing to real-world backend
+              development and RESTful API design. My projects span blockchain-based patient record
+              management, an anomaly detection engine for cybersecurity operations, a smart-contract
+              voting platform, and a full-stack online bookstore — each one pushing me to apply and
+              deepen my technical skills.
             </p>
 
             <p>
-              In college, I have worked on projects such as a Blockchain-based Voting Web Application and an Online Bookstore 
-              using Spring Boot, which allowed me to apply theoretical knowledge to practical development scenarios.
+              Beyond building, I also research. I've published two papers on User and Entity
+              Behavior Analytics (UEBA), won 1st Prize at MMCOE's B.E. Project Competition, and
+              represented my college at the SPPU-level Avishkar competition. I'm driven by the
+              challenge of turning complex problems into clean, purposeful software.
             </p>
 
-            <p>Technologies I've been working with recently:</p>
+            {/* <p>Technologies I've been working with recently:</p> */}
           </div>
 
-          <ul className="skills-list">
+          {/* <ul className="skills-list">
             {skills && skills.map((skill, i) => <li key={i}>{skill}</li>)}
-          </ul>
+          </ul> */}
         </StyledText>
 
         <StyledPic>
           <div className="wrapper">
             <StaticImage
               className="img"
-              src="../../images/photo_Sanica.jpeg"
+              src="../../images/photo_Sanica.jpg"
               width={300}
-              height={300}
               quality={95}
               formats={['AUTO', 'WEBP', 'AVIF']}
               alt="Headshot"
               placeholder="blurred"
+              objectFit="contain"
             />
           </div>
         </StyledPic>

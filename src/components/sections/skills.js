@@ -66,9 +66,9 @@ const Skills = () => {
       <h2 className="numbered-heading">Skills</h2>
 
       <StyledText>
-        <div>
+        {/* <div>
           <p>Here are a few technologies I've been working with recently:</p>
-        </div>
+        </div> */}
 
         <ul className="skills-list">
           {skills && skills.map((skill, i) => <li key={i}>{skill}</li>)}
@@ -78,4 +78,4 @@ const Skills = () => {
   );
 };
 
-export default Skills; 
+export default Skills;
