@@ -135,6 +135,12 @@ const StyledTabPanel = styled.div`
   height: auto;
   padding: 10px 5px;
 
+  @media (prefers-reduced-motion: no-preference) {
+    &:not([hidden]) {
+      animation: panelIn 0.45s var(--easing) both;
+    }
+  }
+
   ul {
     ${({ theme }) => theme.mixins.fancyList};
   }
@@ -160,22 +166,27 @@ const StyledTabPanel = styled.div`
 
 const educationData = [
   {
-    school: 'Marathwada Mitra Mandal College, Pune',
-    degree: 'B.Tech in Computer Science',
-    marks: 'SGPA: 9.05',
-    range: 'Currently studying in 4th year',
+    school: 'MMCOE (SPPU), Pune',
+    degree: 'B.E. in Computer Engineering',
+    range: '2022 - 2026',
+    details: [
+      'CGPA: 8.81 / 10 (First Class with Distinction)',
+      'Coursework: Data Structures & Algorithms, DBMS, Operating Systems, Computer Networks',
+      '1st Prize, B.E. Project Competition (UEBA)',
+      'Top 3 at Avishkar (college level), selected for SPPU-level representation',
+    ],
   },
   {
     school: 'Yashshree Academy',
     degree: '11th & 12th',
-    marks: '75%',
-    range: 'Completed',
+    range: '2020 - 2022',
+    details: ['Marks: 75%'],
   },
   {
     school: 'Takshila School, Ahmednagar',
     degree: '10th Grade',
-    marks: '93%',
-    range: 'Completed',
+    range: 'Completed 2020',
+    details: ['Marks: 93%'],
   },
 ];
 
@@ -232,7 +243,9 @@ const Education = () => {
               </h3>
               <p className="range">{edu.range}</p>
               <ul>
-                <li>{edu.degree === 'B.Tech' ? `SGPA: ${edu.marks}` : `Marks: ${edu.marks}`}</li>
+                {edu.details.map(detail => (
+                  <li key={detail}>{detail}</li>
+                ))}
               </ul>
             </StyledTabPanel>
           ))}

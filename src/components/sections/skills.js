@@ -32,6 +32,15 @@ const StyledText = styled.div`
         color: var(--green);
         font-size: var(--fz-sm);
         line-height: 12px;
+        transition: transform 0.25s var(--easing);
+      }
+
+      &:hover {
+        color: var(--lightest-slate);
+
+        &:before {
+          transform: translateX(4px);
+        }
       }
     }
   }
@@ -50,15 +59,24 @@ const Skills = () => {
   }, []);
 
   const skills = [
-    'Java',
+    'Java 17 / 21',
+    'SQL',
+    'Python',
+    'Solidity',
     'Spring Boot',
-    'MySQL',
-    'MongoDB',
-    'HTML & CSS',
-    'Git & GitHub',
     'REST APIs',
-    'Object-Oriented Programming',
-    'Data Structures & Algorithms',
+    'Microservices',
+    'PostgreSQL',
+    'Redis',
+    'MySQL',
+    'Docker',
+    'Kubernetes (basics)',
+    'GitHub Actions CI',
+    'Linux',
+    'JUnit 5',
+    'Anomaly Detection',
+    'Risk Scoring & RBAC',
+    'SIEM (Wazuh)',
   ];
 
   return (
@@ -70,8 +88,13 @@ const Skills = () => {
           <p>Here are a few technologies I've been working with recently:</p>
         </div> */}
 
-        <ul className="skills-list">
-          {skills && skills.map((skill, i) => <li key={i}>{skill}</li>)}
+        <ul className="skills-list stagger">
+          {skills &&
+            skills.map((skill, i) => (
+              <li key={i} style={{ '--i': i }}>
+                {skill}
+              </li>
+            ))}
         </ul>
       </StyledText>
     </StyledSkillsSection>

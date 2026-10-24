@@ -82,6 +82,7 @@
     "prettier": "^2.2.1"
   },
   "overrides": {
-    "undici": "5.28.4"
+    "undici": "5.28.4",
+    "webpack": "5.94.0"
   }
 }

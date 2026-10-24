@@ -23,8 +23,23 @@ const StyledProject = styled.li`
   grid-template-columns: repeat(12, 1fr);
   align-items: center;
 
+  @media (prefers-reduced-motion: no-preference) and (min-width: 769px) {
+    &:hover {
+      .project-description {
+        transform: translateY(-4px);
+        box-shadow: 0 18px 30px -18px rgba(0, 0, 0, 0.25);
+      }
+      .project-image .img img {
+        transform: scale(1.04);
+      }
+    }
+  }
+
   @media (max-width: 768px) {
     ${({ theme }) => theme.mixins.boxShadow};
+    grid-gap: 0;
+    border-radius: var(--border-radius);
+    background-color: var(--light-navy);
   }
 
   &:not(:last-of-type) {
@@ -111,9 +126,9 @@ const StyledProject = styled.li`
       display: flex;
       flex-direction: column;
       justify-content: center;
-      height: 100%;
       grid-column: 1 / -1;
-      padding: 40px 40px 30px;
+      grid-row: 2;
+      padding: 25px 30px 20px;
       z-index: 5;
     }
 
@@ -139,7 +154,7 @@ const StyledProject = styled.li`
     }
 
     @media (max-width: 768px) {
-      color: var(--white);
+      color: var(--lightest-slate);
 
       a {
         position: static;
@@ -168,6 +183,10 @@ const StyledProject = styled.li`
     color: var(--light-slate);
     font-size: var(--fz-lg);
 
+    @media (prefers-reduced-motion: no-preference) and (min-width: 769px) {
+      transition: transform 0.4s var(--easing), box-shadow 0.4s var(--easing);
+    }
+
     @media (max-width: 768px) {
       padding: 20px 0;
       background-color: transparent;
@@ -183,8 +202,8 @@ const StyledProject = styled.li`
     }
 
     strong {
-      color: var(--white);
-      font-weight: normal;
+      color: var(--lightest-slate);
+      font-weight: 600;
     }
   }
 
@@ -256,8 +275,8 @@ const StyledProject = styled.li`
 
     @media (max-width: 768px) {
       grid-column: 1 / -1;
-      height: 100%;
-      opacity: 0.85;
+      grid-row: 1;
+      box-shadow: none;
     }
 
     a {
@@ -300,6 +319,10 @@ const StyledProject = styled.li`
       }
     }
 
+    .gatsby-image-wrapper {
+      overflow: hidden;
+    }
+
     .img {
       border-radius: var(--border-radius);
       mix-blend-mode: multiply;
@@ -307,12 +330,14 @@ const StyledProject = styled.li`
       opacity: 0.9;
       transition: var(--transition);
 
+      img {
+        @media (prefers-reduced-motion: no-preference) {
+          transition: transform 0.6s var(--easing) !important;
+        }
+      }
+
       @media (max-width: 768px) {
-        object-fit: cover;
-        width: auto;
-        height: 100%;
-        filter: grayscale(50%) contrast(1.1) brightness(0.95);
-        opacity: 0.9;
+        border-radius: var(--border-radius) var(--border-radius) 0 0;
       }
     }
   }
@@ -323,7 +348,7 @@ const Featured = () => {
     {
       featured: allMarkdownRemark(
         filter: { fileAbsolutePath: { regex: "/content/featured/" } }
-        sort: { fields: [frontmatter___date], order: ASC }
+        sort: { fields: [frontmatter___order], order: ASC }
       ) {
         edges {
           node {
@@ -379,7 +404,7 @@ const Featured = () => {
                     <p className="project-overline">Featured Project</p>
 
                     <h3 className="project-title">
-                      <a href={external}>{title}</a>
+                      <a href={github || external}>{title}</a>
                     </h3>
 
                     <div
@@ -388,9 +413,11 @@ const Featured = () => {
                     />
 
                     {tech.length && (
-                      <ul className="project-tech-list">
+                      <ul className="project-tech-list stagger">
                         {tech.map((tech, i) => (
-                          <li key={i}>{tech}</li>
+                          <li key={i} style={{ '--i': i }}>
+                            {tech}
+                          </li>
                         ))}
                       </ul>
                     )}
@@ -411,7 +438,7 @@ const Featured = () => {
                 </div>
 
                 <div className="project-image">
-                  <a href={external ? external : github ? github : '#'}>
+                  <a href={github || external || '#'} aria-label={`${title} on GitHub`}>
                     <GatsbyImage image={image} alt={title} className="img" />
                   </a>
                 </div>

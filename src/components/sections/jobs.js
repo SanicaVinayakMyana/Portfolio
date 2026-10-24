@@ -141,6 +141,12 @@ const StyledTabPanel = styled.div`
   height: auto;
   padding: 10px 5px;
 
+  @media (prefers-reduced-motion: no-preference) {
+    &:not([hidden]) {
+      animation: panelIn 0.45s var(--easing) both;
+    }
+  }
+
   ul {
     ${({ theme }) => theme.mixins.fancyList};
   }
@@ -288,9 +294,13 @@ const Jobs = () => {
                       <span>{title}</span>
                       <span className="company">
                         &nbsp;@&nbsp;
-                        <a href={url} className="inline-link">
-                          {company}
-                        </a>
+                        {url ? (
+                          <a href={url} className="inline-link">
+                            {company}
+                          </a>
+                        ) : (
+                          company
+                        )}
                       </span>
                     </h3>
 

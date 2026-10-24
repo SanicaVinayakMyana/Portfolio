@@ -44,6 +44,54 @@ const TransitionStyles = css`
     opacity: 0;
     transition: opacity 300ms var(--easing);
   }
+
+  /* Entrance keyframes */
+  @keyframes fadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes panelIn {
+    from {
+      opacity: 0;
+      transform: translateX(12px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  /* Scroll reveals, driven by useRevealOnScroll (only active when motion is allowed) */
+  @media (prefers-reduced-motion: no-preference) {
+    .reveal-ready .numbered-heading:after {
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.9s var(--easing) 0.2s;
+    }
+
+    .reveal-ready .numbered-heading.is-visible:after {
+      transform: scaleX(1);
+    }
+
+    .reveal-ready .stagger > * {
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 0.5s var(--easing), transform 0.5s var(--easing);
+      transition-delay: calc(var(--i, 0) * 50ms + 150ms);
+    }
+
+    .reveal-ready .stagger.is-visible > * {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 `;
 
 export default TransitionStyles;

@@ -1,13 +1,11 @@
 ---
 date: '2025-01-28'
-title: 'Java Intern'
+title: 'Java Backend Intern'
 company: 'Coding Granth'
-location: 'Remote'
-range: '28 January 2025 - 28 September 2025'
+location: 'Pune'
+range: 'January 2025 - July 2025'
 url: 'https://www.codinggranth.com/'
 ---
 
-- Worked as a Java Intern focusing on backend development.
-- Contributed to the design and implementation of an Online Bookstore project using Java and Spring Boot.
-- Gained experience in building scalable and efficient backend systems.
-- Collaborated with a team to deliver features and resolve issues in a real-world software environment. 
+- Built and maintained backend services in Java and Spring Boot during a 6-month in-office internship, covering request validation, persistence and error handling.
+- Enabled reliable client–server communication by designing and integrating RESTful APIs consumed by the team's web front end.

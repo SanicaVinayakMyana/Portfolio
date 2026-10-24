@@ -135,25 +135,22 @@ const About = () => {
         <StyledText>
           <div>
             <p>
-              Hi, I'm Sanica - a backend developer with a strong foundation in Java, Spring Boot,
-              Data Structures, and Object-Oriented Programming. My interest in software development
-              began with core Java and grew into a passion for building efficient, secure, and
-              scalable systems.
+              Hi, I'm Sanica, a Java backend engineer focused on payments and fraud detection. I
+              like systems where correctness matters: money that never drifts, retries that never
+              double-charge, and risk scores that explain themselves.
             </p>
 
             <p>
-              I've worked as a Java Intern at Coding Granth, contributing to real-world backend
-              development and RESTful API design. My projects span blockchain-based patient record
-              management, an anomaly detection engine for cybersecurity operations, a smart-contract
-              voting platform, and a full-stack online bookstore — each one pushing me to apply and
-              deepen my technical skills.
+              I'm currently a Systems Engineer Trainee at Infosys. Before that, I built Spring Boot
+              services and REST APIs as a Java Backend Intern at Coding Granth, and deployed Wazuh
+              SIEM and hardened Active Directory labs as a Security Intern at TheTechProtein.
+              Recently I've built a multi-currency payments ledger and a real-time fraud risk
+              scoring service on Java 21, PostgreSQL and Redis.
             </p>
 
             <p>
-              Beyond building, I also research. I've published two papers on User and Entity
-              Behavior Analytics (UEBA), won 1st Prize at MMCOE's B.E. Project Competition, and
-              represented my college at the SPPU-level Avishkar competition. I'm driven by the
-              challenge of turning complex problems into clean, purposeful software.
+              My UEBA project won 1st Prize at MMCOE's B.E. Project Competition, and I've led a
+              Java workshop for women engineering students at PICT, Pune.
             </p>
 
             {/* <p>Technologies I've been working with recently:</p> */}

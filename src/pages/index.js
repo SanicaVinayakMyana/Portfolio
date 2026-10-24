@@ -11,6 +11,7 @@ import {
   Skills,
   Contact,
   Education,
+  Publications,
 } from '@components';
 
 const StyledMainContainer = styled.main`
@@ -26,6 +27,7 @@ const IndexPage = ({ location }) => (
       <Jobs />
       <Featured />
       <Projects />
+      <Publications />
       <Education />
       <Contact />
     </StyledMainContainer>

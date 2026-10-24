@@ -1,8 +1,5 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import { srConfig } from '@config';
-import sr from '@utils/sr';
-import { usePrefersReducedMotion } from '@hooks';
 
 const StyledHeroSection = styled.section`
   ${({ theme }) => theme.mixins.flexCenter};
@@ -38,33 +35,47 @@ const StyledHeroSection = styled.section`
     max-width: 540px;
   }
 
+  .work-ethic {
+    margin: 30px 0 0;
+    padding-left: 18px;
+    max-width: 540px;
+    border-left: 2px solid var(--green);
+    color: var(--lightest-slate);
+    font-size: var(--fz-xl);
+    font-weight: 500;
+    line-height: 1.4;
+  }
+
   .email-link {
     ${({ theme }) => theme.mixins.bigButton};
     margin-top: 50px;
   }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .hero-item {
+      animation: fadeUp 0.7s var(--easing) both;
+      animation-delay: calc(var(--i) * 120ms + 100ms);
+    }
+  }
 `;
 
 const Hero = () => {
-  const revealContainer = useRef(null);
-  const prefersReducedMotion = usePrefersReducedMotion();
-
-  useEffect(() => {
-    if (prefersReducedMotion) {
-      return;
-    }
-
-    sr.reveal(revealContainer.current, srConfig());
-  }, []);
-
   const two = <h2 className="big-heading">Sanica Vinayak Myana.</h2>;
-  const three = <h3 className="big-heading">Java Developer.</h3>;
+  const three = <h3 className="big-heading">Java Backend Engineer.</h3>;
   const four = (
     <p>
-      Final year Computer Engineering student at MMCOE, Pune, with a strong foundation in Java, Data
-      Structures, and Object-Oriented Programming.
-      <br />I specialise in backend development and building secure, scalable systems using Spring
-      Boot, Blockchain, and cybersecurity research.
+      I build reliable backend systems for payments and fraud detection with Java 21, PostgreSQL,
+      Redis and Docker, writing them test-first. I'm currently a Systems Engineer Trainee at{' '}
+      <a href="https://www.infosys.com/" target="_blank" rel="noreferrer">
+        Infosys
+      </a>
+      .
     </p>
+  );
+  const workEthic = (
+    <blockquote className="work-ethic">
+      I build systems the way I'd want to inherit them: clear, tested, and hard to break quietly.
+    </blockquote>
   );
   const five = (
     <a
@@ -76,12 +87,12 @@ const Hero = () => {
     </a>
   );
 
-  const items = [two, three, four, five];
+  const items = [two, three, four, workEthic, five];
 
   return (
     <StyledHeroSection>
       {items.map((item, i) => (
-        <div key={i} ref={revealContainer}>
+        <div key={i} className="hero-item" style={{ '--i': i }}>
           {item}
         </div>
       ))}
