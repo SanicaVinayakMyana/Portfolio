@@ -26,20 +26,44 @@ const StyledHeroSection = styled.section`
     line-height: 1;
   }
 
-  p {
-    margin: 20px 0 0;
-    max-width: 540px;
+  .principle {
+    margin: 40px 0 0;
+    max-width: 640px;
   }
 
-  .work-ethic {
-    margin: 30px 0 0;
-    padding-left: 18px;
-    max-width: 540px;
-    border-left: 2px solid var(--green);
-    color: var(--lightest-slate);
-    font-size: var(--fz-xl);
-    font-weight: 500;
+  .principle-label {
+    margin: 0 0 12px;
+    color: var(--green);
+    font-family: var(--font-mono);
+    font-size: var(--fz-sm);
+  }
+
+  .principle-lead {
+    margin: 0;
+    color: var(--slate);
+    font-size: clamp(var(--fz-lg), 2.4vw, var(--fz-xxl));
     line-height: 1.4;
+  }
+
+  .principle-words {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    margin: 10px 0 0;
+    padding: 0;
+    list-style: none;
+    color: var(--lightest-slate);
+    font-size: clamp(22px, 3.6vw, 34px);
+    font-weight: 600;
+    line-height: 1.3;
+
+    li + li:before {
+      content: '/';
+      margin: 0 14px;
+      color: var(--green);
+      font-family: var(--font-mono);
+      font-weight: 400;
+    }
   }
 
   .email-link {
@@ -52,27 +76,31 @@ const StyledHeroSection = styled.section`
       animation: fadeUp 0.7s var(--easing) both;
       animation-delay: calc(var(--i) * 120ms + 100ms);
     }
+
+    .principle-words li {
+      animation: fadeUp 0.6s var(--easing) both;
+      animation-delay: calc(var(--w) * 180ms + 650ms);
+    }
   }
 `;
+
+const principles = ['Clear.', 'Tested.', 'Hard to break quietly.'];
 
 const Hero = () => {
   const two = <h1>Sanica Vinayak Myana</h1>;
   const three = <h2 className="big-heading">Java Backend Engineer.</h2>;
   const four = (
-    <p>
-      I build reliable, secure backend systems for payments and fraud detection with Java 21,
-      PostgreSQL, Redis and Docker, writing them test-first. I'm currently a Systems Engineer
-      Trainee at{' '}
-      <a href="https://www.infosys.com/" target="_blank" rel="noreferrer">
-        Infosys
-      </a>
-      .
-    </p>
-  );
-  const workEthic = (
-    <blockquote className="work-ethic">
-      I build systems the way I'd want to inherit them: clear, tested, and hard to break quietly.
-    </blockquote>
+    <div className="principle">
+      <p className="principle-label">{'// how I build'}</p>
+      <p className="principle-lead">I build systems the way I&apos;d want to inherit them:</p>
+      <ul className="principle-words">
+        {principles.map((word, i) => (
+          <li key={word} style={{ '--w': i }}>
+            {word}
+          </li>
+        ))}
+      </ul>
+    </div>
   );
   const five = (
     <a
@@ -84,7 +112,7 @@ const Hero = () => {
     </a>
   );
 
-  const items = [two, three, four, workEthic, five];
+  const items = [two, three, four, five];
 
   return (
     <StyledHeroSection>
