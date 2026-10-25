@@ -246,6 +246,15 @@ const StyledProject = styled.li`
       ${({ theme }) => theme.mixins.flexCenter};
       padding: 10px;
 
+      @media (prefers-reduced-motion: no-preference) {
+        transition: transform 0.25s var(--easing), color 0.25s var(--easing);
+
+        &:hover,
+        &:focus-visible {
+          transform: translateY(-3px);
+        }
+      }
+
       &.external {
         svg {
           width: 22px;
@@ -381,7 +390,17 @@ const Featured = () => {
     }
 
     sr.reveal(revealTitle.current, srConfig());
-    revealProjects.current.forEach((ref, i) => sr.reveal(ref, srConfig(i * 100)));
+    // On wide screens each project slides in from the side its text sits on (alternating);
+    // on phones the layout is stacked, so a plain fade-up avoids sideways overflow.
+    const isWide = window.matchMedia('(min-width: 769px)').matches;
+    revealProjects.current.forEach((ref, i) =>
+      sr.reveal(ref, {
+        ...srConfig(100),
+        origin: isWide ? (i % 2 === 0 ? 'right' : 'left') : 'bottom',
+        distance: isWide ? '40px' : '20px',
+        duration: 700,
+      }),
+    );
   }, []);
 
   return (

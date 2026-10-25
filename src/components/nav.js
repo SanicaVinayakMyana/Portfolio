@@ -5,7 +5,7 @@ import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import styled, { css } from 'styled-components';
 import { navLinks } from '@config';
 import { loaderDelay } from '@utils';
-import { useScrollDirection, usePrefersReducedMotion } from '@hooks';
+import { useScrollDirection, usePrefersReducedMotion, useActiveSection } from '@hooks';
 import { Menu } from '@components';
 import { IconLogo, IconHex } from '@components/icons';
 
@@ -130,6 +130,7 @@ const StyledLinks = styled.div`
       font-size: var(--fz-xs);
 
       a {
+        position: relative;
         padding: 10px;
 
         &:before {
@@ -138,6 +139,32 @@ const StyledLinks = styled.div`
           color: var(--green);
           font-size: var(--fz-xxs);
           text-align: right;
+        }
+
+        &:after {
+          content: '';
+          position: absolute;
+          left: 10px;
+          right: 10px;
+          bottom: 4px;
+          height: 1px;
+          background-color: var(--green);
+          transform: scaleX(0);
+          transform-origin: left;
+
+          @media (prefers-reduced-motion: no-preference) {
+            transition: transform 0.3s var(--easing);
+          }
+        }
+
+        &:hover:after,
+        &:focus-visible:after,
+        &.active:after {
+          transform: scaleX(1);
+        }
+
+        &.active {
+          color: var(--lightest-slate);
         }
       }
     }
@@ -155,6 +182,15 @@ const Nav = ({ isHome }) => {
   const scrollDirection = useScrollDirection('down');
   const [scrolledToTop, setScrolledToTop] = useState(true);
   const prefersReducedMotion = usePrefersReducedMotion();
+  const activeSection = useActiveSection(navLinks.map(({ url }) => url.split('#')[1]));
+
+  const navLink = url => {
+    const isActive = activeSection === url.split('#')[1];
+    return {
+      className: isActive ? 'active' : undefined,
+      'aria-current': isActive ? 'location' : undefined,
+    };
+  };
 
   const handleScroll = () => {
     setScrolledToTop(window.pageYOffset < 50);
@@ -219,7 +255,9 @@ const Nav = ({ isHome }) => {
                 {navLinks &&
                   navLinks.map(({ url, name }, i) => (
                     <li key={i}>
-                      <Link to={url}>{name}</Link>
+                      <Link to={url} {...navLink(url)}>
+                        {name}
+                      </Link>
                     </li>
                   ))}
               </ol>
@@ -245,7 +283,9 @@ const Nav = ({ isHome }) => {
                     navLinks.map(({ url, name }, i) => (
                       <CSSTransition key={i} classNames={fadeDownClass} timeout={timeout}>
                         <li key={i} style={{ transitionDelay: `${isHome ? i * 100 : 0}ms` }}>
-                          <Link to={url}>{name}</Link>
+                          <Link to={url} {...navLink(url)}>
+                            {name}
+                          </Link>
                         </li>
                       </CSSTransition>
                     ))}

@@ -51,17 +51,42 @@ const StyledHeroSection = styled.section`
     margin-top: 50px;
   }
 
+  .cursor {
+    display: none;
+  }
+
   @media (prefers-reduced-motion: no-preference) {
     .hero-item {
       animation: fadeUp 0.7s var(--easing) both;
       animation-delay: calc(var(--i) * 120ms + 100ms);
+    }
+
+    .cursor {
+      display: inline-block;
+      width: 0.08em;
+      height: 0.8em;
+      margin-left: 0.12em;
+      vertical-align: -0.04em;
+      background-color: var(--green);
+      animation: blink 1.1s steps(1) 1s infinite;
+    }
+  }
+
+  @keyframes blink {
+    50% {
+      opacity: 0;
     }
   }
 `;
 
 const Hero = () => {
   const two = <h2 className="big-heading">Sanica Vinayak Myana.</h2>;
-  const three = <h3 className="big-heading">Java Backend Engineer.</h3>;
+  const three = (
+    <h3 className="big-heading">
+      Java Backend Engineer.
+      <span className="cursor" aria-hidden="true" />
+    </h3>
+  );
   const four = (
     <p>
       I build reliable backend systems for payments and fraud detection with Java 21, PostgreSQL,
