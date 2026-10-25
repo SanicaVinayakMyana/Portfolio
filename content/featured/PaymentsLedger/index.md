@@ -4,6 +4,7 @@ order: 1
 title: 'Multi-Currency Payments Ledger'
 github: 'https://github.com/SanicaVinayakMyana/payments-ledger'
 external: 'https://github.com/sanicavinayakmyana'
+demo: '/payments-ledger/'
 tech:
   - Java 21
   - jOOQ
