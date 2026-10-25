@@ -2,8 +2,9 @@
 date: '2026-12-01'
 order: 2
 title: 'Real-Time Fraud Risk Scoring Service'
-github: 'https://github.com/sanicavinayakmyana'
+github: 'https://github.com/SanicaVinayakMyana/fraud-risk-service'
 external: 'https://github.com/sanicavinayakmyana'
+demo: '/fraud-risk-scoring/'
 tech:
   - Java 21
   - Redis Streams
