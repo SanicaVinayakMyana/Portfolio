@@ -13,21 +13,17 @@ const StyledHeroSection = styled.section`
   }
 
   h1 {
-    margin: 0 0 30px 4px;
-    color: var(--green);
-    font-family: var(--font-mono);
-    font-size: clamp(var(--fz-sm), 5vw, var(--fz-md));
-    font-weight: 400;
-
-    @media (max-width: 480px) {
-      margin: 0 0 20px 2px;
-    }
+    margin: 0 0 12px 2px;
+    color: var(--slate);
+    font-size: clamp(24px, 4vw, 36px);
+    font-weight: 600;
+    line-height: 1.1;
   }
 
-  h3 {
-    margin-top: 10px;
-    color: var(--slate);
-    line-height: 0.9;
+  h2 {
+    margin: 0;
+    color: var(--lightest-slate);
+    line-height: 1;
   }
 
   p {
@@ -60,12 +56,13 @@ const StyledHeroSection = styled.section`
 `;
 
 const Hero = () => {
-  const two = <h2 className="big-heading">Sanica Vinayak Myana.</h2>;
-  const three = <h3 className="big-heading">Java Backend Engineer.</h3>;
+  const two = <h1>Sanica Vinayak Myana</h1>;
+  const three = <h2 className="big-heading">Java Backend Engineer.</h2>;
   const four = (
     <p>
-      I build reliable backend systems for payments and fraud detection with Java 21, PostgreSQL,
-      Redis and Docker, writing them test-first. I'm currently a Systems Engineer Trainee at{' '}
+      I build reliable, secure backend systems for payments and fraud detection with Java 21,
+      PostgreSQL, Redis and Docker, writing them test-first. I'm currently a Systems Engineer
+      Trainee at{' '}
       <a href="https://www.infosys.com/" target="_blank" rel="noreferrer">
         Infosys
       </a>

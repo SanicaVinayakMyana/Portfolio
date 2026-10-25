@@ -19,7 +19,37 @@ const StyledAboutSection = styled.section`
   }
 `;
 
+const principles = [
+  {
+    name: 'Clear',
+    text: 'Code, data models and APIs the next engineer can follow without a walkthrough. Invariants are written down, not remembered.',
+  },
+  {
+    name: 'Tested',
+    text: 'Behaviour is proven before it ships: tests come first, failure paths are covered, and performance is measured rather than assumed.',
+  },
+  {
+    name: 'Hard to break quietly',
+    text: 'Inputs are validated, access is kept to what is needed, and every change is logged and reconciled, so problems surface loudly before they reach a user.',
+  },
+];
+
 const StyledText = styled.div`
+  ul.principles {
+    ${({ theme }) => theme.mixins.fancyList};
+    margin: 0 0 20px;
+    font-size: var(--fz-lg);
+
+    li {
+      margin-bottom: 12px;
+    }
+
+    strong {
+      color: var(--lightest-slate);
+      font-weight: 600;
+    }
+  }
+
   ul.skills-list {
     display: grid;
     grid-template-columns: repeat(2, minmax(140px, 200px));
@@ -135,25 +165,27 @@ const About = () => {
         <StyledText>
           <div>
             <p>
-              Hi, I'm Sanica, a Java backend engineer focused on payments and fraud detection. I
-              like systems where correctness matters: money that never drifts, retries that never
-              double-charge, and risk scores that explain themselves.
+              I'm a backend engineer working where reliability and security meet: the services
+              that move money, and the systems that notice when something goes wrong. To me they
+              are one discipline. A system isn't reliable if it can be misused, and it isn't secure
+              if no one can tell when it fails.
             </p>
+
+            <p>Three principles shape how I build:</p>
+
+            <ul className="principles stagger">
+              {principles.map(({ name, text }, i) => (
+                <li key={name} style={{ '--i': i * 2 }}>
+                  <strong>{name}.</strong> {text}
+                </li>
+              ))}
+            </ul>
 
             <p>
-              I'm currently a Systems Engineer Trainee at Infosys. Before that, I built Spring Boot
-              services and REST APIs as a Java Backend Intern at Coding Granth, and deployed Wazuh
-              SIEM and hardened Active Directory labs as a Security Intern at TheTechProtein.
-              Recently I've built a multi-currency payments ledger and a real-time fraud risk
-              scoring service on Java 21, PostgreSQL and Redis.
+              That is the direction I'm growing in: backend and security work where trust is the
+              product, such as payments and fraud prevention. I want to be the engineer a team
+              relies on when correctness can't be compromised.
             </p>
-
-            <p>
-              My UEBA project won 1st Prize at MMCOE's B.E. Project Competition, and I've led a
-              Java workshop for women engineering students at PICT, Pune.
-            </p>
-
-            {/* <p>Technologies I've been working with recently:</p> */}
           </div>
 
           {/* <ul className="skills-list">
