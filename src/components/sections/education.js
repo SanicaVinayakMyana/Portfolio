@@ -166,7 +166,7 @@ const StyledTabPanel = styled.div`
 
 const educationData = [
   {
-    school: 'MMCOE (SPPU), Pune',
+    school: 'Savitribai Phule Pune University',
     degree: 'B.E. in Computer Engineering',
     range: '2022 - 2026',
     details: [
