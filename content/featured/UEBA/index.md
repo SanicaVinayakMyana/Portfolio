@@ -13,4 +13,4 @@ showInProjects: true
 cover: './ueba.png'
 ---
 
-A behaviour analytics system that detects unusual user and entity activity in security logs. It engineers behavioural features from raw logs and trains an Isolation Forest model, cutting false positives by 20% and speeding up incident response by 30%. Won 1st Prize at the MMCOE B.E. Project Competition.
+A behaviour analytics system that detects unusual user and entity activity in security logs. It engineers behavioural features from raw logs and trains an Isolation Forest model, cutting false positives by <span class="count" data-to="20">20</span>% and speeding up incident response by <span class="count" data-to="30">30</span>%. Won 1st Prize at the MMCOE B.E. Project Competition.

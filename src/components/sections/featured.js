@@ -205,6 +205,12 @@ const StyledProject = styled.li`
       color: var(--lightest-slate);
       font-weight: 600;
     }
+
+    .count {
+      display: inline-block;
+      font-variant-numeric: tabular-nums;
+      text-align: right;
+    }
   }
 
   .project-tech-list {
@@ -352,6 +358,10 @@ const StyledProject = styled.li`
   }
 `;
 
+const DEPTH_FACTOR = 0.06;
+const MAX_DEPTH_PX = 18;
+const COUNT_DURATION_MS = 1200;
+
 const Featured = () => {
   const data = useStaticQuery(graphql`
     {
@@ -383,6 +393,7 @@ const Featured = () => {
   const featuredProjects = data.featured.edges.filter(({ node }) => node);
   const revealTitle = useRef(null);
   const revealProjects = useRef([]);
+  const coverRefs = useRef([]);
   const prefersReducedMotion = usePrefersReducedMotion();
 
   useEffect(() => {
@@ -403,6 +414,101 @@ const Featured = () => {
       }),
     );
   }, []);
+
+  // Depth: on wide screens each cover drifts a few pixels against the scroll, so it sits
+  // slightly "behind" the text. Disabled on phones and for reduced motion.
+  useEffect(() => {
+    if (prefersReducedMotion || !window.matchMedia('(min-width: 769px)').matches) {
+      return;
+    }
+
+    let frame = null;
+    const update = () => {
+      frame = null;
+      const viewportCenter = window.innerHeight / 2;
+      coverRefs.current.forEach(cover => {
+        if (!cover) {
+          return;
+        }
+        const rect = cover.getBoundingClientRect();
+        if (rect.bottom < -200 || rect.top > window.innerHeight + 200) {
+          return;
+        }
+        const distance = rect.top + rect.height / 2 - viewportCenter;
+        const offset = Math.max(-MAX_DEPTH_PX, Math.min(MAX_DEPTH_PX, distance * DEPTH_FACTOR));
+        cover.style.transform = `translate3d(0, ${offset.toFixed(1)}px, 0)`;
+      });
+    };
+    const onScroll = () => {
+      if (frame === null) {
+        frame = window.requestAnimationFrame(update);
+      }
+    };
+
+    update();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onScroll);
+      if (frame !== null) {
+        window.cancelAnimationFrame(frame);
+      }
+    };
+  }, [prefersReducedMotion]);
+
+  // Count-up: numbers marked <span class="count" data-to="..."> in a description count up
+  // from zero the first time they scroll into view.
+  useEffect(() => {
+    if (prefersReducedMotion || !('IntersectionObserver' in window)) {
+      return;
+    }
+
+    const counters = Array.from(document.querySelectorAll('#projects .project-description .count'));
+    const timers = [];
+    const observer = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) {
+            return;
+          }
+          observer.unobserve(entry.target);
+          const el = entry.target;
+          const target = Number(el.dataset.to);
+          if (!Number.isFinite(target)) {
+            return;
+          }
+          // Reserve the final width so the sentence doesn't shift while digits change
+          el.style.minWidth = `${el.offsetWidth}px`;
+          const start = performance.now();
+          const tick = now => {
+            const t = Math.min((now - start) / COUNT_DURATION_MS, 1);
+            const eased = 1 - Math.pow(1 - t, 3);
+            el.textContent = Math.round(target * eased).toLocaleString('en-US');
+            if (t < 1) {
+              timers.push(window.requestAnimationFrame(tick));
+            }
+          };
+          timers.push(window.requestAnimationFrame(tick));
+        });
+      },
+      { threshold: 0.6 },
+    );
+
+    counters.forEach(counter => {
+      counter.textContent = '0';
+      observer.observe(counter);
+    });
+
+    return () => {
+      observer.disconnect();
+      timers.forEach(id => window.cancelAnimationFrame(id));
+      // Leave the real values in place if the effect is torn down mid-count
+      counters.forEach(counter => {
+        counter.textContent = Number(counter.dataset.to).toLocaleString('en-US');
+      });
+    };
+  }, [prefersReducedMotion]);
 
   return (
     <section id="projects">
@@ -462,7 +568,7 @@ const Featured = () => {
                   </div>
                 </div>
 
-                <div className="project-image">
+                <div className="project-image" ref={el => (coverRefs.current[i] = el)}>
                   <a
                     href={demo || github || external || '#'}
                     aria-label={demo ? `${title} live demo` : `${title} on GitHub`}>

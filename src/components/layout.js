@@ -1,7 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styled, { ThemeProvider } from 'styled-components';
-import { Head, Loader, Nav, Social, Email, Footer, ScrollProgress } from '@components';
+import {
+  Head,
+  Loader,
+  Nav,
+  Social,
+  Email,
+  Footer,
+  ScrollProgress,
+  BackToTop,
+} from '@components';
 import { GlobalStyle, theme } from '@styles';
 import { usePrefersReducedMotion, useRevealOnScroll } from '@hooks';
 
@@ -70,6 +79,7 @@ const Layout = ({ children, location }) => {
               <Nav isHome={isHome} />
               <Social isHome={isHome} />
               <Email isHome={isHome} />
+              <BackToTop />
 
               <div id="content">
                 {children}

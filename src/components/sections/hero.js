@@ -1,5 +1,50 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { usePrefersReducedMotion } from '@hooks';
+
+const TYPE_START_MS = 450;
+const TYPE_STEP_MS = 45;
+
+/** Types `text` out once, like a terminal. Renders the full text without JS or with reduced motion. */
+const TypedText = ({ text }) => {
+  const prefersReducedMotion = usePrefersReducedMotion();
+  const [shown, setShown] = useState(text.length);
+
+  useEffect(() => {
+    if (prefersReducedMotion) {
+      setShown(text.length);
+      return;
+    }
+    setShown(0);
+    let interval;
+    const start = setTimeout(() => {
+      interval = setInterval(() => {
+        setShown(count => {
+          if (count + 1 >= text.length) {
+            clearInterval(interval);
+          }
+          return Math.min(count + 1, text.length);
+        });
+      }, TYPE_STEP_MS);
+    }, TYPE_START_MS);
+    return () => {
+      clearTimeout(start);
+      clearInterval(interval);
+    };
+  }, [prefersReducedMotion, text]);
+
+  return (
+    <span aria-label={text}>
+      {/* A non-breaking space keeps the line's height before the first character appears */}
+      <span aria-hidden="true">{text.slice(0, shown) || ' '}</span>
+    </span>
+  );
+};
+
+TypedText.propTypes = {
+  text: PropTypes.string.isRequired,
+};
 
 const StyledHeroSection = styled.section`
   ${({ theme }) => theme.mixins.flexCenter};
@@ -79,7 +124,8 @@ const StyledHeroSection = styled.section`
 
     .principle-words li {
       animation: fadeUp 0.6s var(--easing) both;
-      animation-delay: calc(var(--w) * 180ms + 650ms);
+      /* Starts once the "// how I build" label has finished typing */
+      animation-delay: calc(var(--w) * 180ms + 1150ms);
     }
   }
 `;
@@ -91,7 +137,9 @@ const Hero = () => {
   const three = <h2 className="big-heading">Java Backend Engineer.</h2>;
   const four = (
     <div className="principle">
-      <p className="principle-label">{'// how I build'}</p>
+      <p className="principle-label">
+        <TypedText text="// how I build" />
+      </p>
       <p className="principle-lead">I build systems the way I&apos;d want to inherit them:</p>
       <ul className="principle-words">
         {principles.map((word, i) => (

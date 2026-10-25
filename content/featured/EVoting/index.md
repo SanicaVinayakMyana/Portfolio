@@ -13,4 +13,4 @@ showInProjects: true
 cover: './election-platform.jpg'
 ---
 
-A decentralized election platform built on Ethereum, where Solidity smart contracts record every vote on-chain so it cannot be altered, deleted, or forged. Voters connect through a web front end using Ethers.js and MetaMask. It ran tamper-proof college club elections for 50+ voters and led to an accepted IEEE paper.
+A decentralized election platform built on Ethereum, where Solidity smart contracts record every vote on-chain so it cannot be altered, deleted, or forged. Voters connect through a web front end using Ethers.js and MetaMask. It ran tamper-proof college club elections for <span class="count" data-to="50">50</span>+ voters and led to an accepted IEEE paper.

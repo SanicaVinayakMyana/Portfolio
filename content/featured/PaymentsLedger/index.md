@@ -14,4 +14,4 @@ showInProjects: true
 cover: './payments-ledger.png'
 ---
 
-A payments ledger that models every money movement as double-entry journal entries, with row-level locking in PostgreSQL. It keeps zero balance drift across 10,000 concurrent transfers, uses Redis idempotency keys so client retries never double-charge, and sustains 800+ requests per second at under 50 ms p99 latency.
+A payments ledger that models every money movement as double-entry journal entries, with row-level locking in PostgreSQL. It keeps zero balance drift across <span class="count" data-to="10000">10,000</span> concurrent transfers, uses Redis idempotency keys so client retries never double-charge, and sustains <span class="count" data-to="800">800</span>+ requests per second at under <span class="count" data-to="50">50</span> ms p99 latency.
